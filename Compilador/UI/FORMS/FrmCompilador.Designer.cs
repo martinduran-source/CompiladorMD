@@ -16,6 +16,7 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCompilador));
             toolStrip1 = new ToolStrip();
             btnNuevo = new ToolStripButton();
             btnAbrir = new ToolStripButton();
@@ -31,6 +32,7 @@
             gridSimbolos = new DataGridView();
             openFileDialog1 = new OpenFileDialog();
             saveFileDialog1 = new SaveFileDialog();
+            toolStripButton1 = new ToolStripButton();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitMain).BeginInit();
             splitMain.Panel1.SuspendLayout();
@@ -50,7 +52,7 @@
             // 
             toolStrip1.GripStyle = ToolStripGripStyle.Hidden;
             toolStrip1.ImageScalingSize = new Size(24, 24);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnNuevo, btnAbrir, btnGuardar, btnCompilar, btnTema, btnSalir });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnNuevo, btnAbrir, btnGuardar, btnCompilar, btnTema, btnSalir, toolStripButton1 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(983, 51);
@@ -58,7 +60,7 @@
             // 
             // btnNuevo
             // 
-            btnNuevo.Image = Properties.Resources._new;
+            btnNuevo.Image = (Image)resources.GetObject("btnNuevo.Image");
             btnNuevo.Name = "btnNuevo";
             btnNuevo.Size = new Size(56, 48);
             btnNuevo.Text = "Nuevo";
@@ -67,7 +69,7 @@
             // 
             // btnAbrir
             // 
-            btnAbrir.Image = Properties.Resources.open;
+            btnAbrir.Image = (Image)resources.GetObject("btnAbrir.Image");
             btnAbrir.Name = "btnAbrir";
             btnAbrir.Size = new Size(46, 48);
             btnAbrir.Text = "Abrir";
@@ -76,7 +78,7 @@
             // 
             // btnGuardar
             // 
-            btnGuardar.Image = Properties.Resources.save;
+            btnGuardar.Image = (Image)resources.GetObject("btnGuardar.Image");
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(66, 48);
             btnGuardar.Text = "Guardar";
@@ -85,24 +87,24 @@
             // 
             // btnCompilar
             // 
-            btnCompilar.Image = Properties.Resources.compilar;
+            btnCompilar.Image = (Image)resources.GetObject("btnCompilar.Image");
             btnCompilar.Name = "btnCompilar";
             btnCompilar.Size = new Size(74, 48);
             btnCompilar.Text = "Compilar";
             btnCompilar.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnCompilar.Click += btnCompilar_Click;
             // 
             // btnTema
             // 
-            btnTema.Image = Properties.Resources.icon_nuevo;
+            btnTema.Image = Properties.Resources.tema;
             btnTema.Name = "btnTema";
             btnTema.Size = new Size(49, 48);
             btnTema.Text = "Tema";
             btnTema.TextImageRelation = TextImageRelation.ImageAboveText;
-            //btnTema.Click += BtnTema_Click;
             // 
             // btnSalir
             // 
-            btnSalir.Image = Properties.Resources.exit;
+            btnSalir.Image = (Image)resources.GetObject("btnSalir.Image");
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(42, 48);
             btnSalir.Text = "Salir";
@@ -123,7 +125,7 @@
             // 
             splitMain.Panel2.Controls.Add(splitBottom);
             splitMain.Size = new Size(983, 589);
-            splitMain.SplitterDistance = 417;
+            splitMain.SplitterDistance = 416;
             splitMain.TabIndex = 0;
             // 
             // splitEditor
@@ -135,7 +137,7 @@
             // splitEditor.Panel2
             // 
             splitEditor.Panel2.Controls.Add(txtTokens);
-            splitEditor.Size = new Size(983, 417);
+            splitEditor.Size = new Size(983, 416);
             splitEditor.SplitterDistance = 792;
             splitEditor.TabIndex = 0;
             // 
@@ -149,7 +151,7 @@
             txtTokens.Name = "txtTokens";
             txtTokens.ReadOnly = true;
             txtTokens.ScrollBars = ScrollBars.Vertical;
-            txtTokens.Size = new Size(187, 417);
+            txtTokens.Size = new Size(187, 416);
             txtTokens.TabIndex = 0;
             txtTokens.Text = "Listado de tokens";
             // 
@@ -166,7 +168,7 @@
             // splitBottom.Panel2
             // 
             splitBottom.Panel2.Controls.Add(gridSimbolos);
-            splitBottom.Size = new Size(983, 168);
+            splitBottom.Size = new Size(983, 169);
             splitBottom.SplitterDistance = 792;
             splitBottom.TabIndex = 0;
             // 
@@ -179,7 +181,7 @@
             txtEstatus.Name = "txtEstatus";
             txtEstatus.ReadOnly = true;
             txtEstatus.ScrollBars = ScrollBars.Vertical;
-            txtEstatus.Size = new Size(792, 168);
+            txtEstatus.Size = new Size(792, 169);
             txtEstatus.TabIndex = 0;
             txtEstatus.Text = "Estatus del compilador";
             // 
@@ -194,12 +196,21 @@
             gridSimbolos.ReadOnly = true;
             gridSimbolos.RowHeadersVisible = false;
             gridSimbolos.RowHeadersWidth = 51;
-            gridSimbolos.Size = new Size(187, 168);
+            gridSimbolos.Size = new Size(187, 169);
             gridSimbolos.TabIndex = 0;
             // 
             // openFileDialog1
             // 
             openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // toolStripButton1
+            // 
+            toolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
+            toolStripButton1.ImageTransparentColor = Color.Magenta;
+            toolStripButton1.Name = "toolStripButton1";
+            toolStripButton1.Size = new Size(29, 48);
+            toolStripButton1.Text = "toolStripButton1";
             // 
             // FrmCompilador
             // 
@@ -249,5 +260,6 @@
         private DataGridView gridSimbolos;
         private OpenFileDialog openFileDialog1;
         private SaveFileDialog saveFileDialog1;
+        private ToolStripButton toolStripButton1;
     }
 }
