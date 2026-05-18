@@ -18,9 +18,10 @@ namespace Compilador.UI.Forms
 {
     public partial class FrmCompilador : Form
     {
-        private RichTextBox txtEditor;
-        private Panel pnlLineNumbers;
+        private RichTextBox? txtEditor;
+        private Panel? pnlLineNumbers;
         private bool isDarkTheme = false;
+
 
         public FrmCompilador()
         {
@@ -59,7 +60,7 @@ namespace Compilador.UI.Forms
         }
 
 
-        private void PnlLineNumbers_Paint(object sender, PaintEventArgs e)
+        private void PnlLineNumbers_Paint(object? sender, PaintEventArgs e)
         {
             e.Graphics.Clear(pnlLineNumbers.BackColor);
 
@@ -91,7 +92,7 @@ namespace Compilador.UI.Forms
         }
 
 
-        private void BtnTema_Click(object sender, EventArgs e)
+        private void BtnTema_Click(object? sender, EventArgs e)
         {
             isDarkTheme = !isDarkTheme;
 
@@ -129,7 +130,7 @@ namespace Compilador.UI.Forms
             pnlLineNumbers.BackColor = Color.FromArgb(45, 45, 48);
         }
 
-        private void btnNuevo_Click(object sender, EventArgs e)
+        private void btnNuevo_Click(object? sender, EventArgs e)
         {
             limpiar();
         }
@@ -147,7 +148,7 @@ namespace Compilador.UI.Forms
             }
         }
 
-        private void btnAbrir_Click(object sender, EventArgs e)
+        private void btnAbrir_Click(object? sender, EventArgs e)
         {
             try
             {
@@ -172,7 +173,7 @@ namespace Compilador.UI.Forms
             }
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void btnGuardar_Click(object? sender, EventArgs e)
         {
             try
             {
@@ -196,6 +197,45 @@ namespace Compilador.UI.Forms
             }
         }
 
-       
+        
+
+
+        private void btnCompilar_Click(object? sender, EventArgs e)
+        {
+            try
+            {
+                //limpiar salidas
+                txtTokens.Clear();
+                txtEstatus.Clear();
+                //VALIDAR QUE NO ESTE VACIO
+                if (string.IsNullOrWhiteSpace(txtEditor.Text))
+                {
+                    MessageBox.Show("NO HAY NADA",
+                                    "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                txtEstatus.AppendText("ANALIZANDO LEXICO" + Environment.NewLine);
+
+
+                // Crear instancia de CodigoFuente
+                var fuente = CodigoFuente.DesdeTexto(txtEditor.Text);
+
+                // Ejemplo: mostrar número de líneas en txtEstatus
+                txtEstatus.AppendText($"El código tiene {fuente.NumeroLineas} líneas." + Environment.NewLine);
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message,
+                                "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+
+        }
     }
 }
